@@ -55,7 +55,7 @@ elif select_visual == 'General':
         hig_quent = df.groupby('Product line')['Quantity'].sum().reset_index()
         hig_quent = hig_quent.sort_values(by='Quantity' , ascending=0)
         q4 = px.bar(hig_quent, x='Product line' , y='Quantity' , text_auto=True ,color='Quantity')
-        explode_effect = [0.0, 0.0, 0.0, 0.0, 0.0, 0.2]
+        explode_effect = [0.0, 0.3, 0.3, 0.0, 0.0, 0.0]
         custom_colors = ['blue', 'orange', 'green', 'darkblue', 'aqua', 'Deeppink' , 'pink']
         q44 = go.Figure(go.Pie(labels=df['Product line'] , values=df['Quantity'] ,
                                pull=explode_effect, marker =dict(colors=custom_colors)))
