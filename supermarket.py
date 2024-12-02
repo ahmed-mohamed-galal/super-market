@@ -185,7 +185,9 @@ elif select_visual == 'City Analysis':
     with tabs6[0]:
         st.title('What is the average Quantity of products sold per invoice in each City?')
         q16 =px.box(df , x='Quantity' , y='Product line')
+        q166 = df.groupby('Product line')['Quantity'].median().reset_index()
         st.plotly_chart(q16)
+        q166
 
 # 17-highest quantity sold in each city?
     with tabs6[1]:
