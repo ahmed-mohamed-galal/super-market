@@ -55,7 +55,7 @@ elif select_visual == 'General':
         hig_quent = df.groupby('Product line')['Quantity'].sum().reset_index()
         hig_quent = hig_quent.sort_values(by='Quantity' , ascending=0)
         q4 = px.bar(hig_quent, x='Product line' , y='Quantity' , text_auto=True ,color='Quantity')
-        explode_effect = [0.0, 0.0, 0.0, 0.0, 0.0, 0.2]
+        explode_effect = [0.0, 0.3, 0.3, 0.0, 0.0, 0.0]
         custom_colors = ['blue', 'orange', 'green', 'darkblue', 'aqua', 'Deeppink' , 'pink']
         q44 = go.Figure(go.Pie(labels=df['Product line'] , values=df['Quantity'] ,
                                pull=explode_effect, marker =dict(colors=custom_colors)))
@@ -185,7 +185,9 @@ elif select_visual == 'City Analysis':
     with tabs6[0]:
         st.title('What is the average Quantity of products sold per invoice in each City?')
         q16 =px.box(df , x='Quantity' , y='Product line')
+        q166 = df.groupby('Product line')['Quantity'].median().reset_index()
         st.plotly_chart(q16)
+        q166
 
 # 17-highest quantity sold in each city?
     with tabs6[1]:
@@ -200,8 +202,8 @@ elif select_visual == 'City Analysis':
 elif select_visual=='summary':
 # 18- What is the highest total price recorded in the dataset, and City, and Customer type does it belong to?
     st.title('What is the highest total price recorded in the dataset, and City, and Customer type does it belong to?')
-    hig_prof = df.groupby(['Product line','City' , 'Customer type'])['Tax 5%'].sum().reset_index()
-    q18 = px.bar(hig_prof , x='City', y='Tax 5%' , color='Product line',facet_col='Customer type',
+    hig_prof = df.groupby(['Product line','City' , 'Customer type'])['total price'].sum().reset_index()
+    q18 = px.bar(hig_prof , x='City', y='total price' , color='Product line',facet_col='Customer type',
            barmode='group', text_auto=True)
     st.plotly_chart(q18)
 pass
