@@ -43,9 +43,9 @@ elif select_visual == 'General':
                      barmode='group' , text_auto=True).update_xaxes(categoryorder='total descending')
         st.plotly_chart(q2)
         
-    # 3-What is the average Tax (5%) paid by customers in each City?
+    # 3-What is the average Tax (5%) paid by customers?
     with tabs[2]:
-        st.title('What is the average Tax (5%) paid by customers in each City?')
+        st.title('What is the average Tax (5%) paid by customers?')
         q3 = px.box(df , x='Tax 5%')
         st.plotly_chart(q3)
         
@@ -184,11 +184,11 @@ elif select_visual == 'City Analysis':
 # 16-What is the average Quantity of products sold per invoice in each City?
     with tabs6[0]:
         st.title('What is the average Quantity of products sold per invoice in each City?')
-        q16 =px.box(df , x='Quantity' , y='Product line')
-        q166 = df.groupby('Product line')['Quantity'].median().reset_index()
+        q16 =px.box(df , x='Quantity' , y='Product line' , color='City')
+        q166 = df.groupby(['Product line' , 'City'])['Quantity'].median().reset_index()
         st.plotly_chart(q16)
         q166
-
+        
 # 17-highest quantity sold in each city?
     with tabs6[1]:
         st.title('highest quantity sold in each city?')
